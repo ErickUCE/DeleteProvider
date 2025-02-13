@@ -15,9 +15,9 @@ const resolvers = {
 
                 // ✅ Notificar a los otros microservicios (Crear, Editar y Leer)
                 const instances = [
-                    'http://localhost:5000/sync-delete', // Microservicio de Crear
-                    'http://localhost:5002/sync-delete', // Microservicio de Editar
-                    'http://localhost:5003/sync-delete'  // ✅ Microservicio de Leer
+                    'http://3.84.200.203:5000/sync-delete', // Microservicio de Crear
+                    'http://54.85.176.86:5002/sync-delete', // Microservicio de Editar
+                    'http://54.166.65.123:5003/sync-delete'  // ✅ Microservicio de Leer
                 ];
 
                 for (const instance of instances) {
