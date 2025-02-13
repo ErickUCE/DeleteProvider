@@ -37,6 +37,9 @@ jobs:
         script: |
           echo "✅ Iniciando despliegue en EC2..."
 
+          # Crear el archivo .env desde el secreto de GitHub
+          echo "${{ secrets.ENV_FILE_DELETE_PROVIDER }}" > .env
+
           # Iniciar sesión en Docker Hub
           sudo docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
@@ -56,8 +59,8 @@ jobs:
             sudo lsof -t -i :5001 | xargs sudo kill -9 || true
           fi
 
-          # Ejecutar el nuevo contenedor
+          # Ejecutar el nuevo contenedor con el archivo .env
           echo "🚀 Iniciando nuevo contenedor delete-provider..."
-          sudo docker run -d -p 4001:4001 -p 5001:5001 --name delete-provider ${{ secrets.DOCKER_USERNAME }}/projectawsstore-deleteprovider
+          sudo docker run -d -p 4001:4001 -p 5001:5001 --env-file .env --name delete-provider ${{ secrets.DOCKER_USERNAME }}/projectawsstore-deleteprovider
 
           echo "✅ Despliegue completado exitosamente."
