@@ -1,7 +1,7 @@
 const { Sequelize } = require('sequelize');
 
 const sequelize = new Sequelize('ProviderDB', 'erick', 'Password@123', {
-    host: '23.21.70.193', // Cambia esto por la IP pública de esta instancia EC2
+    host: '52.54.203.131', // Cambia esto por la IP pública de esta instancia EC2
     dialect: 'mysql',
     logging: false,
 });
